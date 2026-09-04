@@ -24,7 +24,7 @@ public class EnemyScript : MonoBehaviour
     {
         if(collision.tag == "Bullet")
         {
-            uiScript.AddScore(2);
+            uiScript.AddScore(10);
             gameObject.SetActive(false);
             collision.gameObject.SetActive(false);
         }
