@@ -124,4 +124,6 @@ public class PlayerScript : MonoBehaviour
             isDamage = true;
         }
     }
+
+
 }

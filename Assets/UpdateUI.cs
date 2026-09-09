@@ -8,7 +8,10 @@ public class UpdateUI : MonoBehaviour
     public TMP_Text lifesText;
     public int score;
     public GameObject gameOverPanel;
+    public GameObject winPanel;
+
     
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,9 +40,20 @@ public class UpdateUI : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
     }
-    public void RestartGame()
+
+    public void OpenWin()
+    {
+        winPanel.SetActive(true);
+    }
+
+    public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
