@@ -1,44 +1,49 @@
-//using UnityEngine;
+using UnityEngine;
 
-//public class ChangeCursor : MonoBehaviour
-//{
-//    [SerializeField] private CursorType cursor;
-    
-//    private CursorType defaultCursor;
-//    private bool hasExit;
+public class ChangeCursor : MonoBehaviour
+{
+    [SerializeField] private CursorType cursor;
 
-//    private void Start()
-//    {
-//        defaultCursor = Resources.Load<CursorType>("DefaultCrosshair");
-//    }
+    private static CursorType defaultCursor;
+    private static ChangeCursor currentHoverTarget;
 
-//    private void OnMouseEnter()
-//    {
-//        SetCursor();
-//        hasExit = false;
-//    }
+    private void Start()
+    {
+        if (defaultCursor == null)
+            defaultCursor = Resources.Load<CursorType>("DefaultCrosshair");
+    }
 
-//    private void OnMouseExit()
-//    {
-//        SetDefaultCursor();
-//        hasExit= true;
-//    }
+    private void OnMouseEnter()
+    {
+        currentHoverTarget = this;
+        SetCursor();
+    }
 
-//    private void OnDestroy()
-//    {
-//        if (!hasExit)
-//        SetDefaultCursor();
-//    }
+    private void OnMouseExit()
+    {
+        if (currentHoverTarget == this)
+        {
+            currentHoverTarget = null;
+            SetDefaultCursor();
+        }
+    }
 
+    private void OnDestroy()
+    {
+        if (currentHoverTarget == this)
+        {
+            currentHoverTarget = null;
+            SetDefaultCursor();
+        }
+    }
 
+    private void SetDefaultCursor()
+    {
+        Cursor.SetCursor(defaultCursor.cursorTexture, defaultCursor.cursorHotSpot, CursorMode.Auto);
+    }
 
-//    private void SetDefaultCursor()
-//    {
-//        Cursor.SetCursor(defaultCursor.cursorTexture, defaultCursor.cursorHotSpot, CursorMode.Auto);
-//    }
-
-//    private void SetCursor()
-//    {
-//        Cursor.SetCursor(cursor.cursorTexture, cursor.cursorHotSpot, CursorMode.Auto);
-//    }
-//}
+    private void SetCursor()
+    {
+        Cursor.SetCursor(cursor.cursorTexture, cursor.cursorHotSpot, CursorMode.Auto);
+    }
+}

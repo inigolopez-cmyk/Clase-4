@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     public bool isPlaying;
 
+    [SerializeField] private AudioSource winAudio;
+
+
     [SerializeField]
     private float gameTime;
 
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isPlaying = true;
-        gameTime = 9;
+        gameTime = 90;
 
         uiScript = FindFirstObjectByType<UpdateUI>();
         UpdateGameTimeText();
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
                 gameTime = 0;
                 isPlaying = false;
                 uiScript.OpenWin();
+                winAudio.Play();
             }
 
             UpdateGameTimeText();

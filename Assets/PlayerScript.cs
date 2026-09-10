@@ -23,6 +23,9 @@ public class PlayerScript : MonoBehaviour
 
     public List<GameObject> bulletPool = new List<GameObject>();
 
+    [SerializeField] private AudioSource loseAudio;
+
+
     private void OnEnable()
     {
         inputmovement.Enable();
@@ -74,6 +77,7 @@ public class PlayerScript : MonoBehaviour
             gameObject.SetActive(false);
             Time.timeScale = 0;
             uiScript.OpenGameOver();
+            loseAudio.Play();
         }
 
         if(isDamage)
