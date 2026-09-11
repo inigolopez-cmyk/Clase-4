@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isPlaying = true;
-        gameTime = 90;
+        gameTime = 150;
 
         uiScript = FindFirstObjectByType<UpdateUI>();
         UpdateGameTimeText();

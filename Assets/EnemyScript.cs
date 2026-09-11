@@ -4,6 +4,10 @@ public class EnemyScript : MonoBehaviour
 {
     GameObject player;
     UpdateUI uiScript;
+
+    [SerializeField] private GameObject pickupPrefab;
+    [Range(0f, 1f)][SerializeField] private float dropChance = 0.3f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +30,12 @@ public class EnemyScript : MonoBehaviour
         {
             uiScript.AddScore(10);
             gameObject.SetActive(false);
+
+            if (Random.value <= dropChance)
+            {
+                Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+            }
+
             collision.gameObject.SetActive(false);
         }
     }

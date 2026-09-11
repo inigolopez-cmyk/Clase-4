@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +22,8 @@ public class PlayerScript : MonoBehaviour
 
     public List<GameObject> bulletPool = new List<GameObject>();
 
-    [SerializeField] private AudioSource loseAudio;
+    [SerializeField] private AudioSource shootAudio;
+
 
 
     private void OnEnable()
@@ -77,7 +77,6 @@ public class PlayerScript : MonoBehaviour
             gameObject.SetActive(false);
             Time.timeScale = 0;
             uiScript.OpenGameOver();
-            loseAudio.Play();
         }
 
         if(isDamage)
@@ -94,6 +93,7 @@ public class PlayerScript : MonoBehaviour
         
         if(shoot.triggered)
         {
+            shootAudio.Play();
             GameObject temp = GetBullet();
             temp.SetActive(true);
             temp.transform.position = transform.position;
@@ -129,5 +129,12 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void AddHealth(int value)
+    {
+        lifes += value;
+        lifes = Mathf.Min(lifes, 6); 
+        uiScript.AddLifes(lifes);
+
+    }
 
 }

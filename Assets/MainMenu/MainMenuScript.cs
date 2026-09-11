@@ -5,6 +5,8 @@ using UnityEngine;
 public class MainMenuScript : MonoBehaviour
 {
 
+    [SerializeField] private AudioSource buttonAudio;
+
     void Start()
     {
         
@@ -12,13 +14,16 @@ public class MainMenuScript : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene(1); 
+        SceneManager.LoadScene(1);
+        buttonAudio.Play();
+
     }
 
     public void QuitGame()
     {
         Application.Quit();
+        buttonAudio.Play();
     }
 
- 
+
 }
