@@ -43,7 +43,7 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 movement = inputmovement.ReadValue<Vector2>();
-        rb2D.linearVelocity = movement * 5;
+        rb2D.linearVelocity = movement * 3;
         rb2D.linearVelocity = Vector2.ClampMagnitude(rb2D.linearVelocity,10);
 
         Vector2 lookDir = rotateMovement.ReadValue<Vector2>();
